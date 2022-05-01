@@ -4,10 +4,12 @@ import SearchScreen from "./src/screens/SearchScreen";
 
 const navigator = createStackNavigator({
   Search: SearchScreen
-}, {
+}, 
+{
   // default route name to show
   initialRouteName: 'Search',
-  defaultNavigationOptions: {
+  defaultNavigationOptions: 
+  {
     // customize header 
     title: "Business Search"
   }
