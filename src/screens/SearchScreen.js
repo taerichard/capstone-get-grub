@@ -13,26 +13,18 @@ const SearchScreen = () => {
                 // attaches to the URL 
                 limit: 50,
                 term, 
-                location: 'seattle' 
-
+                location: 'san jose' 
             }
         });
 
-        //error checking 
-        if(response.status !== 201){
-            console.log(response.status)
-            throw new Error("response error")
-        }else{
-            setResults(response.data.businesses);
-        }
-        
+        setResults(response.data.businesses);
     };
 
     return (
     <View>
         <SearchBar 
             term={term} 
-            onTermChange={newTerm => setTerm(newTerm)}
+            onTermChange={setTerm}
             onTermSubmit={searchApi}
             />
         <Text>Search Screen</Text>
