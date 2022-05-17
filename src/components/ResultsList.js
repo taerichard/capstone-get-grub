@@ -1,6 +1,7 @@
 // resusable list 
 import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { withNavigation } from "react-navigation";
 import ResultsDetail from "./ResultsDetail";
 
 const ResultsList = ({title, results, navigation}) => {
@@ -14,9 +15,10 @@ const ResultsList = ({title, results, navigation}) => {
             keyExtractor={(result) => result.id}
             renderItem={({ item }) => {
                 return (
-                    <TouchableOpacity onPress={() => console.log("clicked")}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ResultsShow', { id: item.id })}> 
                         <ResultsDetail result={item} />
                     </TouchableOpacity>
+                    // passing in id prop from the business obj for ResultsShowScreen to receive. 
                 )
             }}
 
@@ -37,4 +39,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ResultsList; 
+export default withNavigation(ResultsList); 
