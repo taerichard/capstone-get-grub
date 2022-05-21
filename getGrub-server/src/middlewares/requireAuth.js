@@ -12,7 +12,6 @@ module.exports = (req, res, next) => {
     }
 
    const token = authorization.replace('Bearer ', '');
-   console.log(token)
    jwt.verify(token, 'my_secret_key', async (err, payload) => {
         if(err){
             return res.status(401).send({error: 'You must be logged in'});
