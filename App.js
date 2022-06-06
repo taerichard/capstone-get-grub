@@ -6,44 +6,48 @@ import ResultsShowScreen from "./src/screens/ResultsShowScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { setNavigator } from "./src/navigationRef";
 
-const switchNavigator = createSwitchNavigator({
-  loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Signin: SigninScreen,
-    Search: SearchScreen,
-    ResultShow: ResultsShowScreen,
-  }),
-  // mainFlow: createBottomTabNavigator({
-  //   SerachListFlow: createStackNavigator({
-  //     Search: SearchScreen,
-  //     ResultShow: ResultsShowScreen,
-  //   }),
-  // }),
-});
-
-// const navigator = createStackNavigator({
-//   Search: SearchScreen,
-//   ResultsShow: ResultsShowScreen
-// },
-// {
-//   // default route name to show
-//   initialRouteName: 'Search',
-//   defaultNavigationOptions:
-//   {
-//     // customize header
-//     title: "Business Search"
-//   }
+// const switchNavigator = createSwitchNavigator({
+//   loginFlow: createStackNavigator({
+//     Signup: SignupScreen,
+//     Signin: SigninScreen,
+//     // Search: SearchScreen,
+//     // ResultShow: ResultsShowScreen,
+//   }),
+//   SerachListFlow: createStackNavigator({
+//     Search: SearchScreen,
+//     ResultShow: ResultsShowScreen,
+//   }),
 // });
 
-//export default createAppContainer(navigator);
+const navigator = createStackNavigator(
+  {
+    Search: SearchScreen,
+    ResultsShow: ResultsShowScreen,
+  },
+  {
+    // default route name to show
+    initialRouteName: "Search",
+    defaultNavigationOptions: {
+      // customize header
+      title: "Business Search",
+    },
+  }
+);
 
-const App = createAppContainer(switchNavigator);
+export default createAppContainer(navigator);
 
-export default () => {
-  return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  );
-};
+// const App = createAppContainer(switchNavigator);
+
+// export default () => {
+//   return (
+//     <AuthProvider>
+//       <App
+//         ref={(navigator) => {
+//           setNavigator(navigator);
+//         }}
+//       />
+//     </AuthProvider>
+//   );
+// };
