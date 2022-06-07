@@ -1,13 +1,15 @@
 import { AsyncStorage } from "react-native";
+//import AsyncStorage from "@react-native-community/async-storage";
 import createDataContext from "./createDataContext";
 import grubApi from "../api/grub";
 import { navigate } from "../navigationRef";
+import grub from "../api/grub";
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case "add_error":
       return { ...state, errorMessage: action.payload };
-    case "signup":
+    case "signin":
       return { errorMessage: "", token: action.payload };
     default:
       return state;
@@ -24,7 +26,7 @@ const signup =
       const response = await grubApi.post("/signup", { email, password });
       console.log(response.data);
       await AsyncStorage.setItem("token", response.data.token);
-      dispatch({ type: "signup", payload: response.data.token });
+      dispatch({ type: "signin", payload: response.data.token });
 
       // go to main flow
       navigate("Search");
@@ -36,13 +38,22 @@ const signup =
     }
   };
 
-const signin = (dispatch) => {
-  return ({ email, password }) => {
-    // try signin
-    // handle success by updating state
-    // handle failure by showing error message
+const signin =
+  (dispatch) =>
+  async ({ email, password }) => {
+    try {
+      const response = await grubApi.post("/signin", { email, password });
+      await AsyncStorage.setItem("token", response.data.token);
+      dispatch({ type: "signin", payload: response.data.token });
+      navigate("Search");
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: "add_error",
+        payload: "Something went wrong with sign in",
+      });
+    }
   };
-};
 
 const signout = (dispatch) => {
   return () => {

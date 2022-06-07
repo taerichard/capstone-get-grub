@@ -12,13 +12,17 @@ import { setNavigator } from "./src/navigationRef";
 //   loginFlow: createStackNavigator({
 //     Signup: SignupScreen,
 //     Signin: SigninScreen,
-//     // Search: SearchScreen,
-//     // ResultShow: ResultsShowScreen,
+//     Search: SearchScreen,
+//     ResultShow: ResultsShowScreen,
 //   }),
 //   SerachListFlow: createStackNavigator({
 //     Search: SearchScreen,
 //     ResultShow: ResultsShowScreen,
 //   }),
+//   // SerachListFlow: createBottomTabNavigator({
+//   //   Search: SearchScreen,
+//   //   ResultShow: ResultsShowScreen,
+//   // }),
 // });
 
 const navigator = createStackNavigator(
