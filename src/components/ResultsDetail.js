@@ -2,7 +2,6 @@ import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 
 const ResultsDetail = ({ result }) => {
-  console.log("helo");
   return (
     <View style={styles.container}>
       <Image source={{ uri: result.image_url }} style={styles.image} />
@@ -10,6 +9,7 @@ const ResultsDetail = ({ result }) => {
       <Text>
         {result.rating} Stars, {result.review_count} Reviews
       </Text>
+      <Text>{result.location.city + ", " + result.location.state}</Text>
     </View>
   );
 };

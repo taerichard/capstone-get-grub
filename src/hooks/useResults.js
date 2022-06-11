@@ -5,19 +5,19 @@ export default () => {
   const [results, setResults] = useState([]); // data from api
   const [errorMessage, setErrorMessage] = useState("");
 
-  const searchApi = async (searchTerm) => {
+  const searchApi = async (searchTerm, city) => {
     try {
       const response = await yelp.get("/search", {
         params: {
           // attaches to the URL
           limit: 50,
           term: searchTerm,
-          location: "seattle",
+          location: city,
         },
       });
       setResults(response.data.businesses);
     } catch (err) {
-      setErrorMessage("Something went wrong");
+      setErrorMessage("");
     }
   };
 

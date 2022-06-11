@@ -2,7 +2,6 @@ import { NavigationActions } from "react-navigation";
 // getting access to navigator in app.js and to allow other components to use
 
 let navigator;
-console.log("navigator", navigator);
 export const setNavigator = (nav) => {
   navigator = nav;
 };
